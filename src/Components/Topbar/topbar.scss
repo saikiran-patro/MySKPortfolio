@@ -1,14 +1,15 @@
 @import "../../Global.scss";
 
 .topbar{
-    background-color: #EEEEEE;
+    background-color: #E8E8E8;
     color: $mainColor;
     width: 100%;
-    height: 90px;
+    height: 70px;
     position:fixed;
     top: 0;
-    z-index: 1;
-
+    z-index: 3;
+    
+    transition: all 1s ease-in-out;
     .wrapper {
         padding: 10px 30px;
         display: flex;
@@ -25,13 +26,18 @@
                 margin-right:10px;
             }
             a{
-                color:inherit;
+                color:$mainColor;
                 text-decoration:none;
             }
         }
         .right{
 
             .hamburger{
+                scroll-snap-type: y mandatory;
+                &::-webkit-scrollbar{
+                display: none;
+                    }
+            
                 width:32px;
                 height:25px;
                 display:flex;
@@ -42,10 +48,58 @@
                     width:100%;
                     height:3px;
                     background-color:$mainColor;
+                    transform-origin: left;
+                    transition: all 1s ease;
                 }
+                .lin1{
+                    margin-top:5px
+                }
+            }
+        }
+        @media(min-width:300px) and (max-width:875px){
+
+            .hamburger{
+                display:none;
+            }
+            .right{
+                display:none;
             }
         }
 
     }
-
+    &.active{
+        background-color:$mainColor;
+        color:$secondaryColor;
+        .left{
+            a{
+                color:$secondaryColor;
+            }
+        }
+    
+        .hamburger{
+            scroll-snap-type: y mandatory;
+                &::-webkit-scrollbar{
+                display: none;
+                    }
+              
+            span{
+                  &:nth-child(1){
+                    background-color:$secondaryColor;
+                    transform:rotate(45deg);
+                }
+                &:nth-child(2){
+                    opacity:0
+                }
+                &:nth-child(3){
+                    background-color:$secondaryColor;
+                    transform:rotate(-45deg);
+                }
+                
+            }
+        }
+        
+    }
+    
+    
 }
+
